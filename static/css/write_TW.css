@@ -1,0 +1,216 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+    color: #fbf0ee;
+    /* placeholder字体大小  */
+    font-size: 0.23rem;
+     /* placeholder位置  */
+    /*text-align: right;*/
+}
+.con{
+    width: 7.5rem;
+    height: auto;
+    position: relative;
+}
+/*头部CSS*/
+.con .header{
+    width: 7.1rem;
+    height: 1rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    font-size: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background: #fff;
+    border-bottom: 0.01rem solid #ccc;
+}
+.CardTips{
+    width: 0.56rem;
+    height: 0.56rem;
+    border-radius: 0.28rem;
+    background: #8ED0F9;
+    padding: 0 0.28rem;
+    font-size: 0.26rem;
+    color: #fff;
+    line-height: 0.56rem;
+    text-align: center;
+    font-weight: 800;
+    position: relative;
+}
+.icon-fanhui{
+    font-size: 0.45rem;
+    color: #1DA1F2;
+}
+.Input_area{
+    width: 7.14rem;
+    height: 4rem;
+    margin: 0.36rem auto 0;
+    display: flex;
+    justify-content: flex-start;
+}
+.Input_area .left{
+    width: 0.74rem;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+.Input_area .left img{
+    width: 0.74rem;
+    height: 0.74rem;
+    border-radius: 50%;
+}
+.Input_area .MSG{
+    width: 6rem;
+    height: 2rem;
+    margin: 0 0 0.36rem 0.28rem;
+}
+#textarea{
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 5.7rem;
+    height: 4rem;
+    line-height: 24px;
+    padding: 0.18rem;
+    border: 0;
+    background: #F5F8FA;
+    border-bottom: 2px solid #1DA1F2;
+    font-size: 0.33rem;
+    color: #000;
+}
+textarea{
+    outline: none;
+    border-color: rgba(82, 168, 236, 0.8);
+}
+.upload{
+    width: 100%;
+    height: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.3rem;
+}
+.upload li{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.upload li:nth-child(2){
+    width: 50%;
+    font-size: 0.35rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.upload li:nth-child(2) .tips{
+    width: 1.4rem;
+    height: 0.26rem;
+    border-radius: 0.13rem;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-right: 0.2rem;
+    position: relative;
+}
+.upload li:nth-child(2) .tips .line{
+    width: 0;
+    height: 0.24rem;
+    border-radius: 0.12rem;
+    background: #1DA1F2;
+    box-sizing: border-box;
+    border: 0;
+    position: absolute;
+    left: 0;
+    top: -0.01rem;
+}
+.icon-pic{
+    font-size: .53rem;
+    color: #1DA1F2;
+}
+.icon-add{
+    font-size: .55rem;
+    color: #8ED0F9;
+}
+/*房价预测*/
+.yuce{
+    width: 6rem;
+    height: 7rem;
+    background: #9A9C9E;
+    margin: 0 auto;
+}
+.yuce .list{
+    width: 100%;
+    height: .75rem;
+    margin: 0.15rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: .25rem;
+}
+#dis{
+    width: 70%;
+    height: 70%;
+    margin-left: 0.2rem;
+    border: 0;
+    background: #F5F8FA;
+}
+#roomnum{
+    width: 70%;
+    height: 70%;
+    margin-left: 0.2rem;
+    border: 0;
+    background: #F5F8FA;
+}
+#halls{
+    width: 70%;
+    height: 70%;
+    margin-left: 0.2rem;
+    border: 0;
+    background: #F5F8FA;
+}
+#floor{
+    width: 70%;
+    height: 70%;
+    margin-left: 0.2rem;
+    border: 0;
+    background: #F5F8FA;
+}
+#area{
+    width: 70%;
+    height: 70%;
+    margin-left: 0.2rem;
+    border: 0;
+    background: #F5F8FA;
+}
+.preview{
+    width: 7.2rem;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.float{
+    width: 2rem;
+    height: auto;
+    float: left;
+    font-size: 0.35rem;
+    margin: 0 0.15rem;
+    position: relative;
+}
+.icon-guanbi{
+    position: absolute;
+    right: 0.1rem;
+    top: 0.1rem;
+}

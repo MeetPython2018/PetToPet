@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/rem.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1003205_re4g9qd811a.css">
+
+    <link rel="stylesheet" href="{% static 'css/intensify.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-labelauty.css' %}">
+    <script src="{% static 'js/jquery-labelauty.js' %}"></script>
+    <style>
+        .intensify{
+            width: 100%;
+            height: 13.3rem;
+            background: url({% static 'images/bg.jpeg' %}) no-repeat;
+            background-size: 100% 100%;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="intensify">
+        <div class="header">
+            <a href="{% url 'official:index' %}">
+                <i class="iconfont icon-fanhui"></i>
+            </a>
+            <span>填写完基础信息后,方可发动态!</span>
+        </div>
+        <div class="con">
+            <div class="content">
+                <div class="title">
+                    <span>第<i class="iconfont icon-xuhao"></i>步:</span>
+                    <span>选择宠物类型</span>
+                </div>
+                <form action="" method="post" id="cate_chose">
+                    {% csrf_token %}
+                    <div class="cate">
+                        <div class="pet_img">
+                            <li>
+                                <img src="{% static 'images/cat.png' %}" alt="" class="cat">
+                            </li>
+                            <li>
+                                <img src="{% static 'images/dog.png' %}" alt="" class="dog">
+                            </li>
+                        </div>
+                        <div class="lis">
+                            {% for item in cate %}
+                                <ul class="dowebok">
+                                    <li>
+                                        <input type="radio" name="cate" class="ceshi" data-labelauty="{{ item.petName }}" value="{{ item.id }}">
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <button class="submit">
+                        <i class="iconfont icon-xiayibu"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+$(function(){
+	$(':input').labelauty();
+	$('.ceshi').eq(0).attr("checked",'checked')
+    $('.cat').click(function () {
+        $('.dog').css({
+            boxShadow:'0 0 0 0 rgba(0,0,0,0.5)',
+        })
+        $('.ceshi').eq(1).removeAttr('checked')
+        $('.ceshi').eq(0).attr("checked",'checked')
+        $(this).css({
+            boxShadow:'.07rem .11rem .1rem 0 rgba(0,0,0,0.5)',
+        })
+    })
+    $('.dog').click(function () {
+        $(this).css({
+            boxShadow:'-.07rem .11rem .1rem 0 rgba(0,0,0,0.5)',
+        })
+        $('.cat').css({
+            boxShadow:'0 0 0 0 rgba(0,0,0,0.5)',
+        })
+        $('.ceshi').eq(0).removeAttr('checked')
+        $('.ceshi').eq(1).attr("checked",'checked')
+    })
+
+});
+</script>

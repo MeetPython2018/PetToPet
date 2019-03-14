@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/rem.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1003205_gr443y24r54.css">
+    <link rel="stylesheet" href="{% static 'css/lev_message.css' %}">
+</head>
+<body>
+    <div class="comment">
+        <div class="header">
+            <a href="{% url 'official:index' %}">
+                <i class="iconfont icon-guanbi"></i>
+            </a>
+            <span>回复</span>
+        </div>
+        <div class="con">
+            <div class="userImg">
+                <a href="">
+                    <img src="{% static 'img/boy.png' %}" alt="">
+                </a>
+                <div class="line"></div>
+            </div>
+            <div class="dynamic">
+                <li class="text">
+                    <span class="name">{{ uname }}</span>
+                    <span class="time">{{ data.c_time }}</span>
+                    <p class="txt">{{ data.con }}</p>
+                </li>
+            </div>
+        </div>
+        <div class="touch_you">
+            <h3>
+                <span style="color: rgb(101, 119, 134);">回复<a href="">@雨中人</a> </span>
+            </h3>
+            <div class="my_img">
+                <a href="">
+                    <img src="{% static 'img/boy.png' %}" alt="">
+                </a>
+            </div>
+            <div class="inputs">
+                <textarea name="" id="textarea" placeholder="发布你的回复" maxlength="120"></textarea>
+                <div class="submit">
+                    <div class="tips-line"></div>
+                    <i class="iconfont icon-fasong1"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    console.log($(".dynamic").height())
+    var autoTextarea = function (elem, extra, maxHeight) {
+        extra = extra || 0;
+        var isFirefox = !!document.getBoxObjectFor || 'mozInnerScreenX' in window,
+        isOpera = !!window.opera && !!window.opera.toString().indexOf('Opera'),
+                addEvent = function (type, callback) {
+                        elem.addEventListener ?
+                                elem.addEventListener(type, callback, false) :
+                                elem.attachEvent('on' + type, callback);
+                },
+                getStyle = elem.currentStyle ? function (name) {
+                        var val = elem.currentStyle[name];
+
+                        if (name === 'height' && val.search(/px/i) !== 1) {
+                                var rect = elem.getBoundingClientRect();
+                                return rect.bottom - rect.top -
+                                        parseFloat(getStyle('paddingTop')) -
+                                        parseFloat(getStyle('paddingBottom')) + 'px';
+                        };
+
+                        return val;
+                } : function (name) {
+                                return getComputedStyle(elem, null)[name];
+                },
+                minHeight = parseFloat(getStyle('height'));
+
+        elem.style.resize = 'none';
+
+        var change = function () {
+                var scrollTop, height,
+                        padding = 0,
+                        style = elem.style;
+
+                if (elem._length === elem.value.length) return;
+                elem._length = elem.value.length;
+
+                if (!isFirefox && !isOpera) {
+                        padding = parseInt(getStyle('paddingTop')) + parseInt(getStyle('paddingBottom'));
+                };
+                scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
+                elem.style.height = minHeight + 'px';
+                if (elem.scrollHeight > minHeight) {
+                        if (maxHeight && elem.scrollHeight > maxHeight) {
+                                height = maxHeight - padding;
+                                style.overflowY = 'auto';
+                        } else {
+                                height = elem.scrollHeight - padding;
+                                style.overflowY = 'hidden';
+                        };
+                        style.height = height + extra + 'px';
+                        scrollTop += parseInt(style.height) - elem.currHeight;
+                        document.body.scrollTop = scrollTop;
+                        document.documentElement.scrollTop = scrollTop;
+                        elem.currHeight = parseInt(style.height);
+                };
+        };
+
+        addEvent('propertychange', change);
+        addEvent('input', change);
+        addEvent('focus', change);
+        change();
+};
+    var text = document.getElementById("textarea");
+    autoTextarea(text);// 调用
+    let line=document.getElementById("textarea")
+    line.oninput=function () {
+        console.log($(this).val().length)
+        let dis=parseInt($("#textarea").val().length)
+        $(".tips-line").css({
+            width:`${dis*0.02}rem`
+        })
+        if ($("#textarea").val().length === 0){
+            $(".icon-fasong1").css('color','#8ED0F9')
+        }
+    }
+    let lineDis=parseInt($(".dynamic").height())
+    $(".line").css({
+        height:`${lineDis/100+.4}rem`
+    })
+    $(".icon-fasong1").click(function () {
+        let con = $("#textarea").val()
+        $.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}'}});
+        $.ajax({
+            url: "{% url 'official:lev_message' data.id %}",
+            type: 'post',
+            data:{"con": con},
+            success:function (e) {
+                if(e.statue=='ok'){
+                    $("#textarea").val('')
+                    alert("评论发布成功！")
+                    location.href = "http://127.0.0.1:8000/";
+                }
+            }
+        })
+    })
+</script>

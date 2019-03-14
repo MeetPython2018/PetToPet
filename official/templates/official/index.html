@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/rem.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1003205_sisnl9crnj9.css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <style>
+        .write_TW{
+            display: block;
+            width: 1.1rem;
+            height: 1.1rem;
+            background: #1DA1F2;
+            position: fixed;
+            right: 0.4rem;
+            bottom: 0.4rem;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.22) 0px 3px 6px;
+        }
+        .icon-tianjia{
+            font-size: 0.25rem;
+            position: absolute;
+            left: 0.3rem;
+            top: 0.4rem;
+            color: #fff;
+
+        }
+        .icon-feather-{
+            font-size: 0.5rem;
+            position: absolute;
+            left: 0.45rem;
+            top: 0.3rem;
+            color: #fff;
+        }
+        .icon-ziyuan1{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <div class="header">
+            <a href="javaScript:;" class="userImg">
+                <img src="/media{{ dl_user.img }}" alt="">
+            </a>
+            <div class="CardTips">
+                <h2>主页</h2>
+            </div>
+        </div>
+        <div class="listCard">
+            <ul class="item">
+                <li><i class="iconfont icon-zhuye"></i></li>
+                <li><i class="iconfont icon-sousuo1"></i></li>
+                <li><i class="iconfont icon-tongzhi"></i></li>
+                <li><i class="iconfont icon-youjian"></i></li>
+            </ul>
+        </div>
+        <div class="content">
+            {% for item in data %}
+                <ul class="Tweet">
+                    <div class="left_con">
+                        <a href="">
+                            <img src="/media{{ item.art_user_img }}" alt="">
+                        </a>
+                    </div>
+                    <div class="right_con">
+                        <li class="text">
+                            <span>{{ item.uname }}</span>
+                            <span>{{ item.c_time }}</span>
+                            <p>
+                                <a href="{% url "official:see_msg" item.id%}" style="color: rgba(0,0,0,1)">
+                                    {{ item.con }}
+                                </a>
+                            </p>
+                        </li>
+                        <li class="images">
+                            {% if item.length == 1 %}
+                                {% for i in item.img %}
+                                    <img src="{{ i }}" alt="" style="width: 100%;height: 100%">
+                                {% endfor %}
+                            {% endif %}
+                            {% if item.length == 2 %}
+                                {% for i in item.img %}
+                                    <img src="{{ i }}" alt="" style="width: 50%;height: 100%">
+                                {% endfor %}
+                            {% endif %}
+                            {% if item.length == 3 %}
+                                {% for i in item.img %}
+                                    <img src="{{ i }}" alt="" class="spe">
+                                {% endfor %}
+                            {% endif %}
+                            {% if item.length == 4 %}
+                                {% for i in item.img %}
+                                    <img src="{{ i }}" alt="" style="width: 50%;height: 100%">
+                                {% endfor %}
+                            {% endif %}
+                        </li>
+                        <li class="list_item">
+                            <a href="{% url 'official:lev_message' item.id %}">
+                                <i class="iconfont icon-xiaoxi"></i>
+                                <span>{{ item.pl_num }}</span>
+                            </a>
+                            <a href="">
+                                <i class="iconfont icon-xunhuan"></i>
+                                <span>{{ item.transpond }}</span>
+                            </a>
+                            <a href="javaScript:;" class="likeYou">
+                                {% if item.id in item.true_heart and user_id in item.true_user %}
+                                    <i class="iconfont icon-ziyuan1"></i>
+                                    <span class="smart_heart">{{ item.heart_num }}</span>
+                                    <span hidden class="msg_id">{{ item.id }}</span>
+                                    {% else %}
+                                    <i class="iconfont icon-xihuan"></i>
+                                    <span class="smart_heart">{{ item.heart_num }}</span>
+                                    <span hidden class="msg_id">{{ item.id }}</span>
+                                {% endif %}
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            {% endfor %}
+        </div>
+        <div class="Msg_setting">
+            <i class="iconfont icon-guanbi"></i>
+            <ul>
+                <li>
+                    <div class="p_msg">
+                        <img src="/media{{ dl_user.img }}" alt="">
+                        {# 跳至个人主页 #}
+                        <a href="{% url 'official:set_info' 0 %}">
+                            <b>{{ username }}</b>
+                            <em>@{{ email }}</em>
+                        </a>
+                    </div>
+                </li>
+                <li class="linkMe">
+                    <a href="">
+                        <span>72</span>
+                        <strong>正在关注</strong>
+                    </a>
+                    <a href="">
+                        <span>64</span>
+                        <strong>关注者</strong>
+                    </a>
+                </li>
+                <li class="aboutMe">
+                    <a href="{% url 'official:set_info' 0 %}">
+                        <i class="iconfont icon-yonghu"></i>
+                        <span>个人资料</span>
+                    </a>
+                    <a href="">
+                        <i class="iconfont icon-liebiao"></i>
+                        <span>列表</span>
+                    </a>
+                    <a href="">
+                        <i class="iconfont icon-shuqian"></i>
+                        <span>书签</span>
+                    </a>
+                    <a href="{% url 'official:forecas' %}">
+                        <i class="iconfont icon-shandian"></i>
+                        <span>瞬间</span>
+                    </a>
+                </li>
+                <li class="trueSetting">
+                    <a href=""><span>设置和隐私</span></a>
+                    <a href=""><span>关于</span></a>
+                    <a href="{% url 'verify:secede' %}"><span>退出登录</span></a>
+                </li>
+            </ul>
+        </div>
+        {% if flag == 0 %}
+            <a class="write_TW" href="{% url 'petstate:intensify' %}">
+                <i class="iconfont icon-tianjia"></i>
+                <i class="iconfont icon-feather-"></i>
+            </a>
+            {% else %}
+            <a class="write_TW" href="{% url 'petstate:write_TW' %}">
+                <i class="iconfont icon-tianjia"></i>
+                <i class="iconfont icon-feather-"></i>
+            </a>
+        {% endif %}
+
+    </div>
+</body>
+</html>
+<script>
+    $('.spe').eq(0).css({
+        width: '50%',
+        height: '50%'
+    })
+    $('.spe').eq(1).css({
+        width: '50%',
+        height: '50%'
+    })
+    $('.spe').eq(2).css({
+        width: '50%',
+        height: '50%'
+    })
+    console.log($('.spe').eq(1))
+    $(".userImg").click(function () {
+        $(".Msg_setting").css('display','block')
+        $(".con").css({
+            background: 'rgba(0,0,0,.1)'
+        })
+    })
+    $(".icon-guanbi").click(function () {
+        $(".Msg_setting").css('display','none')
+        $(".con").css({
+            background: '#fff'
+        })
+    })
+    //滑动处理
+        var startX, startY;
+        document.addEventListener('touchstart',function (ev) {
+            startX = ev.touches[0].pageX;
+            startY = ev.touches[0].pageY;
+        }, false);
+                function GetSlideDirection(startX, startY, endX, endY) {
+            var dy = startY - endY;
+            //var dx = endX - startX;
+            var result = 0;
+            if(dy>0) {//向上滑动
+                result=1;
+                console.log(1)
+            }else if(dy<0){//向下滑动
+                result=2;
+                console.log(2)
+            }
+            else
+            {
+                result=0;
+            }
+            return result;
+        }
+        document.addEventListener('touchend',function (ev) {
+            var endX, endY;
+            endX = ev.changedTouches[0].pageX;
+            endY = ev.changedTouches[0].pageY;
+            var direction = GetSlideDirection(startX, startY, endX, endY);
+            switch(direction) {
+                case 0:
+                    break;
+                case 1:
+                    // 向上
+                    $(".listCard").css('top','0')
+                    $(".header").css('top','-1rem')
+                    break;
+                case 2:
+                    // 向下
+                    $(".listCard").css('top','1rem')
+                    $(".header").css('top','0')
+                    break;
+                default:
+            }
+        }, false);
+    $(".likeYou").click(function (e) {
+        $.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}'}});
+        let that=$(this)
+        console.log(that.find(".true_heart").text())
+        console.log($(this).find('.msg_id').text())
+
+        $.ajax({
+            url: '{% url 'official:forecas' %}',
+            type: 'post',
+            data: {"msg_id":$(this).find('.msg_id').text()},
+            success:function (e) {
+                if (e.statue=='ok'){
+                    that.find('.iconfont').removeClass('icon-xihuan')
+                    that.find('.iconfont').addClass("icon-ziyuan1")
+                    let demo = parseInt(that.find('.smart_heart').text())+1
+                    that.find('.smart_heart').text(demo)
+                }else {
+                    alert("老铁,你给他点过了！")
+                }
+            }
+        })
+    })
+</script>

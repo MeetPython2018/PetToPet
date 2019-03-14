@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1003205_re4g9qd811a.css">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <script src="{% static 'js/rem.js' %}"></script>
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+        }
+        a{
+            text-decoration: none;
+        }
+        input::-webkit-input-placeholder {
+            color: #ccc;
+            opacity: 1;
+            font-size: 0.33rem;
+        }
+        @keyframes hiddenMY{
+            0%{
+                opacity: 0;
+            }
+            50%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        .main-box{
+            width: 100%;
+            background: url({% static 'img/bg3.jpg' %}) no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+        }
+        .main-box:after{
+            content: "";
+            display: block;
+        }
+        .bg{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+         }
+        .dlform{
+            width: 100%;
+            height: auto;
+            padding-top: 2.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .items{
+            width: 90%;
+            height: .8rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0.2rem auto;
+            position: relative;
+            border-bottom: 1px solid #ccc;
+
+        }
+        .items:last-child{
+            margin-top: 1rem;
+        }
+        .ul{
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: .1rem auto 3rem;
+        }
+        .ul li a{
+            color: #ccc;
+            font-size: 0.31rem;
+        }
+        .inputs{
+            padding: 0.1rem 3rem 0.1rem 0;
+            border: 0;
+            background: rgba(0,0,0,0);
+            color: white;
+            outline: none;
+            font-size: .35rem;
+        }
+        .btn{
+            width: 100%;
+            height: .9rem;
+            border: 0;
+            border-radius: 0.08rem;
+            background: #35A3F1;
+            color: #fff;
+            font-size: 0.4rem;
+        }
+        .icon-yonghu{
+            margin: 0 .22rem .1rem 0;
+            font-size: 0.38rem;
+        }
+        .icon-mima{
+            margin: 0 .22rem .1rem 0;
+            font-size: 0.38rem;
+        }
+        .icon-youxiang{
+            margin: 0 .22rem .05rem 0;
+            font-size: 0.28rem;
+        }
+        .icon-shouji{
+            margin: 0 .22rem .1rem 0;
+            font-size: 0.4rem;
+        }
+        .error{
+            width: 90%;
+            height: auto;
+            position: absolute;
+            left: .5rem;
+            bottom: 0.6rem;
+            animation: hiddenMY 4s;
+            opacity: 0;
+            font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+
+        }
+        .error .errorlist{
+            {#width: 100%;#}
+            height: 0.8rem;
+            float: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .errorlist li{
+            height: 100%;
+            line-height: 0.8rem;
+        }
+        .errorlist li .errorlist{
+            line-height: 0.8rem;
+        }
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px white inset;  //使用足够大的纯色内阴影覆盖黄色背景
+            border: 1px solid #CCC!important;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-box">
+        <div class="bg">
+            <form action="" method="post" class="dlform" autocomplete="off">
+                {% csrf_token %}
+                <label for="" class="items">
+                    <i class="iconfont icon-yonghu"></i>
+                    {{ form.username }}
+                </label>
+                <label for="" class="items">
+                    <i class="iconfont icon-shouji"></i>
+                    {{ form.tel }}
+                </label>
+                <label for="" class="items">
+                    <i class="iconfont icon-mima"></i>
+                    {{ form.password }}
+                </label>
+                <label for="" class="items">
+                    <i class="iconfont icon-youxiang"></i>
+                    {{ form.email }}
+                </label>
+                <label for="" class="items" style="border: 0">
+                    <button class="btn">注 册</button>
+                </label>
+            </form>
+            <div class="ul">
+                <li>
+                    <a href="{% url 'verify:login' %}" style="text-decoration: underline;color: #35A3F1">已有账户?登录</a>
+                </li>
+            </div>
+            {% if errors %}
+                <div class="error">
+                    {{ errors }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    {#  控制手机号的输入按3/4/4的格式显示  #}
+    var oldtel = $("#id_tel").val();
+    let tels=''
+    if (oldtel !== ''){
+        for (let i = 0;i<oldtel.length;i++){
+            tels+=oldtel[i]
+            if (i == 2){
+                tels+=' '
+            }
+            if (i == 6){
+                tels+=' '
+            }
+        }
+        $("#id_tel").val(tels);
+    }
+     $("#id_tel").bind('input',function () {
+        $("#id_tel").val(fomatterTel($("#id_tel").val(), oldtel));
+        oldtel = $("#id_tel").val();
+     });
+    function fomatterTel(val, old) {
+        var str = "";
+        var telLen = val.length;
+        if (old.length <= telLen) {
+            if (telLen === 4 || telLen === 9) {
+                var pre = val.substring(0, telLen-1);
+                var last = val.substr(telLen-1, 1);
+                str = pre + ' ' + last;
+            } else {
+                str = val;
+            }
+        } else {
+            if (telLen === 9 || telLen === 4) {
+                str = val.trim();
+            } else {
+                str = val;
+            }
+        }
+        return str;
+    }
+    $(".btn").click(function () {
+        let Posttel = ''
+        oldtel = $("#id_tel").val();
+        for (var i = 0; i< oldtel.length; i++){
+            if (oldtel[i] != ' '){
+               Posttel+=oldtel[i]
+            }
+        }
+        $("#id_tel").val(Posttel)
+    })
+</script>

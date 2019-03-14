@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="{% static 'js/rem.js' %}"></script>
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+        }
+        a{
+            text-decoration: none;
+        }
+        .wel-face{
+            width: 100%;
+            background: url({% static 'img/bg4.jpg' %}) no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+        }
+        .wel-face:after{
+            content: "";
+            display: block;
+            {#padding-top: 160%;#}
+        }
+        h3{
+            margin: 3.5rem 0 7.5rem 0;
+            font-size: 30px;
+            color: white;
+        }
+        ul{
+            width: 7rem;
+            height: 1rem;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        li{
+            width: 47%;
+            height: 100%;
+            background: white;
+        }
+        li:last-child{
+            background: #38C0DC;
+        }
+        li:last-child a{
+            color: #fff;
+        }
+        a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 1rem;
+            text-align: center;
+            color: black;
+        }
+    </style>
+</head>
+<body onload="setHeight()" onresize="setHeight()">
+    <div class="wel-face" id="wel-face">
+        <h3>遇 见 乐 宠</h3>
+        <ul>
+            <li>
+                <a href="{% url 'verify:login' %}">
+                    <span>登录</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'verify:register' %}">
+                    <span>注册</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function setHeight()
+    {
+        var max_height = document.documentElement.clientHeight;
+        var primary = document.getElementById('wel-face');
+        primary.style.minHeight = max_height+"px";
+        primary.style.maxHeight = max_height+"px";
+    }
+</script>

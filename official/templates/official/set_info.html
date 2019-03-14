@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/rem.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1003205_sisnl9crnj9.css">
+    <link rel="stylesheet" href="{% static 'css/set_info.css' %}">
+    <style>
+        .top{
+            width: 100%;
+            height: 3.5rem;
+            background: url("{% static 'img/top_bg2.png' %}") no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="top">
+            <div class="con">
+                <a href="{% url 'official:index' %}">
+                    <i class="iconfont icon-fanhui"></i>
+                </a>
+            </div>
+        </div>
+        <div class="middle">
+            <li>
+                <a href="" class="img">
+                    <div class="userImg">
+                        <img src="/media{{ dl_user.img }}" alt="">
+                    </div>
+                </a>
+                <a href="{% url 'official:about_me' %}" class="info">
+                    <span>编辑宠物资料</span>
+                </a>
+            </li>
+            <li>
+                <span>{{ username }}</span>
+                <span>@{{ email }}</span>
+                <p>个性签名......</p>
+            </li>
+            <li>
+               <span>76 <em>正在关注</em></span>
+               <span style="margin-left: .2rem">6 <em>关注者</em></span>
+            </li>
+        </div>
+        <div class="tweet_list">
+            {% if items == 0 %}
+                <div class="items">
+                    <a class="dt" href="{% url 'official:set_info' 0 %}" style="color: #35A3F1;border-bottom: 0.03rem solid #35A3F1">
+                        <span>动态</span>
+                    </a>
+                    <a class="hf" href="{% url 'official:set_info' 1 %}">
+                        <span>回复</span>
+                    </a>
+                    <a class="xh" href="{% url 'official:set_info' 2 %}">
+                        <span>喜欢</span>
+                    </a>
+                </div>
+                <div class="many">
+                    {% for item in data %}
+                        <ul class="Tweet">
+                            <div class="left_con">
+                                <a href="">
+                                    <img src="{% static 'img/boy.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div class="right_con">
+                                <li class="text">
+                                    <span>{{ item.uname }}</span>
+                                    <span>{{ item.c_time }}</span>
+                                    <p>{{ item.con }}</p>
+                                </li>
+                                <li class="images">
+                                    {% if item.length == 1 %}
+                                        {% for i in item.img %}
+                                            <img src="{{ i }}" alt="" style="width: 100%;height: 100%">
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% if item.length == 2 %}
+                                        {% for i in item.img %}
+                                            <img src="{{ i }}" alt="" style="width: 50%;height: 100%">
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% if item.length == 3 %}
+                                        {% for i in item.img %}
+                                            <img src="{{ i }}" alt="" class="spe">
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% if item.length == 4 %}
+                                        {% for i in item.img %}
+                                            <img src="{{ i }}" alt="" style="width: 50%;height: 100%">
+                                        {% endfor %}
+                                    {% endif %}
+                                </li>
+                                <li class="list_item">
+                                    <a href="{% url 'official:lev_message' item.id %}">
+                                        <i class="iconfont icon-xiaoxi"></i>
+                                        <span>{{ item.pl_num }}</span>
+                                    </a>
+                                    <a href="">
+                                        <i class="iconfont icon-xunhuan"></i>
+                                        <span>{{ item.transpond }}</span>
+                                    </a>
+                                    <a href="javaScript:;" class="likeYou">
+                                        {% if item.id in item.true_heart and user_id in item.true_user %}
+                                            <i class="iconfont icon-ziyuan1"></i>
+                                            <span class="smart_heart">{{ item.heart_num }}</span>
+                                            <span hidden class="msg_id">{{ item.id }}</span>
+                                            {% else %}
+                                            <i class="iconfont icon-xihuan"></i>
+                                            <span class="smart_heart">{{ item.heart_num }}</span>
+                                            <span hidden class="msg_id">{{ item.id }}</span>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    {% endfor %}
+                </div>
+                {% elif items == 1 %}
+                <div class="items">
+                    <a class="dt" href="{% url 'official:set_info' 0 %}">
+                        <span>动态</span>
+                    </a>
+                    <a class="hf" href="{% url 'official:set_info' 1 %}" style="color: #35A3F1;border-bottom: 0.03rem solid #35A3F1">
+                        <span>回复</span>
+                    </a>
+                    <a class="xh" href="{% url 'official:set_info' 2 %}">
+                        <span>喜欢</span>
+                    </a>
+                </div>
+                <div class="many">
+                    <h3>这是回复消息区</h3>
+                </div>
+                {% elif items == 2 %}
+                <div class="items">
+                    <a class="dt" href="{% url 'official:set_info' 0 %}">
+                        <span>动态</span>
+                    </a>
+                    <a class="hf" href="{% url 'official:set_info' 1 %}">
+                        <span>回复</span>
+                    </a>
+                    <a class="xh" href="{% url 'official:set_info' 2 %}" style="color: #35A3F1;border-bottom: 0.03rem solid #35A3F1">
+                        <span>喜欢</span>
+                    </a>
+                </div>
+                <div class="many">
+                    <h3>这是喜欢动态区</h3>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(".likeYou").click(function (e) {
+        $.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}'}});
+        let that=$(this)
+        console.log(that.find(".true_heart").text())
+        console.log($(this).find('.msg_id').text())
+
+        $.ajax({
+            url: '{% url 'official:forecas' %}',
+            type: 'post',
+            data: {"msg_id":$(this).find('.msg_id').text()},
+            success:function (e) {
+                if (e.statue=='ok'){
+                    that.find('.iconfont').removeClass('icon-xihuan')
+                    that.find('.iconfont').addClass("icon-ziyuan1")
+                    let demo = parseInt(that.find('.smart_heart').text())+1
+                    that.find('.smart_heart').text(demo)
+                }else {
+                    alert("老铁,你给他点过了！")
+                }
+            }
+        })
+    })
+</script>

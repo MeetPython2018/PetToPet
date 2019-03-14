@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+.intensify_son{
+    width: 100%;
+    height: auto;
+    font-size: 0.25rem;
+}
+.intensify_son .header{
+    width: 100%;
+    height: 1rem;
+}
+.intensify_son .header .con{
+    width: 7.2rem;
+    height: 1rem;
+    margin: 0 auto;
+    font-size: .4rem;
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.intensify_son .header .con span{
+    margin-left: 0.2rem;
+}
+.icon-xuhao1{
+    font-size: .4rem;
+}
+.body{
+    width: 100%;
+    height: auto;
+}
+#cate_chose{
+    width: 7.2rem;
+    height: auto;
+    margin: 0 auto;
+}
+.icon-fanhui{
+    font-size: .55rem;
+}
+.con{
+    width: 100%;
+    height: auto;
+    font-size: 0.25rem;
+}
+.key{
+    width: 7.2rem;
+    height: auto;
+    margin: 0 auto;
+}
+.key .lis{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.dowebok{
+    margin: 0.2rem 0.1rem;
+}
+.show_time{
+    width: 100%;
+    height: 5.5rem;
+}
+.submit{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 0 auto;
+}
+.icon-ziyuan{
+    font-size: 1rem;
+}
+.labelauty-checked-image{
+    background-size: 100% 100%;
+}
+.labelauty-unchecked-image{
+    background-size: 100% 100%;
+}

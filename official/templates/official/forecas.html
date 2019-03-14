@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/rem.js' %}"></script>
+    <style>
+        .yuce{
+            width: 6rem;
+            height: 7rem;
+            background: #9A9C9E;
+            margin: 0 auto;
+        }
+        .yuce .list{
+            width: 100%;
+            height: .75rem;
+            margin: 0.15rem 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: .25rem;
+        }
+        #dis{
+            width: 70%;
+            height: 70%;
+            margin-left: 0.2rem;
+            border: 0;
+            background: #F5F8FA;
+        }
+        #roomnum{
+            width: 70%;
+            height: 70%;
+            margin-left: 0.2rem;
+            border: 0;
+            background: #F5F8FA;
+        }
+        #halls{
+            width: 70%;
+            height: 70%;
+            margin-left: 0.2rem;
+            border: 0;
+            background: #F5F8FA;
+        }
+        #floor{
+            width: 70%;
+            height: 70%;
+            margin-left: 0.2rem;
+            border: 0;
+            background: #F5F8FA;
+        }
+        #area{
+            width: 70%;
+            height: 70%;
+            margin-left: 0.2rem;
+            border: 0;
+            background: #F5F8FA;
+        }
+    </style>
+</head>
+<body>
+    <div class="yuce">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div for="" class="list" >
+                <span style="margin-left: 0.3rem">地 区:</span>
+                <select name="dis" id="dis">
+                    <option value="0">--------</option>
+                    <option value="1">东城</option>
+                    <option value="2">丰台</option>
+                    <option value="3">海淀</option>
+                    <option value="4">石景山</option>
+                    <option value="5">西城</option>
+                </select>
+            </div>
+            <div for="" class="list" >
+                <span style="margin-left: 0.3rem">房间数:</span>
+                <select name="roomnum" id="roomnum">
+                    <option value="0">--------</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div for="" class="list" >
+                <span style="margin-left: 0.3rem">客厅数:</span>
+                <select name="halls" id="halls">
+                    <option value="">--------</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div for="" class="list" >
+                <span style="margin-left: 0.3rem">楼 层:</span>
+                <select name="floor" id="floor">
+                    <option value="0">--------</option>
+                    <option value="low">低层</option>
+                    <option value="middle">中层</option>
+                    <option value="high">高层</option>
+                </select>
+            </div>
+            <div class="list" >
+                <span style="margin-left: 0.3rem">面 积:</span>
+                <input type="text" id="area" name="area">
+            </div>
+            <div class="list" >
+                <span style="margin-left: 0.3rem;margin-right: 0.3rem">是否靠近地铁:</span>
+                <label for="yes1">
+                    是<input type="radio" name="subway" id="yes1" value="1">
+                </label>
+                <label for="no1">
+                    否<input type="radio" name="subway" id="no1"  value="0">
+                </label>
+            </div>
+            <div class="list">
+                <span style="margin-left: 0.3rem;margin-right: 0.3rem">是否靠近学校:</span>
+                <label for="yes2">
+                    是<input type="radio" name="school" id="yes2" value="1">
+                </label>
+                <label for="no2">
+                    否<input type="radio" name="school" id="no2" value="0">
+                </label>
+            </div>
+            <div class="list">
+                <span>预测房价为:</span>
+                <p style="color: red;font-size: .32rem">￥{{ price }}</p>元
+            </div>
+            <div class="list">
+                <span>摇一摇:</span>
+                <input type="submit" value="提交">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

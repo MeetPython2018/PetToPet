@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+.header{
+    width: 7.2rem;
+    height: 1rem;
+    padding: 0 0.15rem;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header a{
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #333;
+}
+.header a .icon-fanhui{
+    font-size: 0.65rem;
+}
+.header span{
+    font-size: 0.25rem;
+    margin-right: 0.15rem;
+    color: #fff;
+}
+.con{
+    width: 100%;
+    height: auto;
+    font-size: 0.25rem;
+    margin-top: 0.35rem;
+}
+.con .content{
+    width: 7.2rem;
+    height: auto;
+    margin: 0 auto;
+}
+.con .content .title{
+    font-size: 0.4rem;
+    margin: 0.3rem 0;
+    color: #333;
+}
+.icon-xuhao{
+    font-size: .4rem;
+}
+.cate{
+    width: 7.2rem;
+    height: auto;
+    margin: 0 auto;
+}
+.cate .pet_img{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0.3rem 0;
+}
+.cate .pet_img li{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.cat{
+    width: 100%;
+    border-radius: 0.15rem;
+    opacity: .8;
+    transition: all .5s;
+}
+.dog{
+    width: 100%;
+    border-radius: 0.15rem;
+    opacity: .8;
+    transition: all .5s;
+}
+.labelauty-checked-image{
+    background-size: 100% 100%;
+}
+.labelauty-unchecked-image{
+    background-size: 100% 100%;
+}
+.cate .lis{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+.dowebok{
+    margin: 0.2rem 0.1rem;
+}
+.submit{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 0 auto;
+}
+.icon-xiayibu{
+    font-size: 1rem;
+}
+

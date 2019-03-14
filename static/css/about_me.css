@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+.comment{
+    width: 100%;
+    height: 12rem;
+}
+.header{
+    width: 7.2rem;
+    height: 1rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header a{
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.header span{
+    margin-right: 2rem;
+    font-size: .35rem;
+}
+.icon-fanhui{
+    font-size: .5rem;
+}
+.header .button{
+    width: 1.2rem;
+    height: .6rem;
+    border-radius: 0.3rem;
+    background: #1DA1F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header .button em{
+    font-style: normal;
+    color: #fff;
+    font-size: .3rem;
+}
+.setting{
+    width: 7.2rem;
+    height: 7rem;
+    margin: 0 auto;
+}
+.setting .set_info{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.setting .set_info li{
+    width: 100%;
+    height: 1.5rem;
+    font-size: .35rem;
+}
+.setting .set_info li .userImg{
+    width: 1.4rem;
+    height: 1.4rem;
+    background: #fff;
+    border-radius: .7rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.setting .set_info li .userImg img{
+    width: 1.3rem;
+    height: 1.3rem;
+    background: #fff;
+    border-radius: .65rem;
+}
+.setting .set_info .ms-1,.ms-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    border-bottom: 0.01rem solid #ccc;
+    background: #F5F8FA;
+    margin-bottom: .3rem;
+}
+.setting .set_info .ms-1 input{
+    width: 5rem;
+    padding: .1rem 1rem .1rem .3rem;
+    outline: none;
+    background: none;
+    border: 0;
+    font-size: .35rem;
+}
+.setting .set_info .ms-2 textarea{
+    width: 6.5rem;
+    padding: .1rem 0 .1rem .3rem;
+    outline: none;
+    background: none;
+    border: 0;
+    font-size: .33rem;
+}

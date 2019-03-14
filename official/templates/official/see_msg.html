@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/rem.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1003205_sisnl9crnj9.css">
+    <link rel="stylesheet" href="{% static 'css/see_msg.css' %}">
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <a href="{% url "official:index" %}">
+                <i class="iconfont icon-fanhui"></i>
+            </a>
+            <span>动态</span>
+        </div>
+        <div class="writer_info">
+            <div class="lev1">
+                <a href="" class="userImg">
+                    <img src="{% static 'img/boy.png' %}" alt="">
+                </a>
+                <p>
+                    <span>{{ uname }}</span>
+                </p>
+            </div>
+            <div class="DT">
+                <p class="words">{{ data.con }}</p>
+                <div class="imgs">
+                    {% if data.length == 1 %}
+                    {% for i in data.img %}
+                        <img src="{{ i }}" alt="" style="width: 100%;height: 100%">
+                    {% endfor %}
+                    {% endif %}
+                    {% if data.length == 2 %}
+                        {% for i in data.img %}
+                            <img src="{{ i }}" alt="" style="width: 50%;height: 100%">
+                        {% endfor %}
+                    {% endif %}
+                    {% if data.length == 3 %}
+                        {% for i in data.img %}
+                            <img src="{{ i }}" alt="" class="spe">
+                        {% endfor %}
+                    {% endif %}
+                    {% if data.length == 4 %}
+                        {% for i in data.img %}
+                            <img src="{{ i }}" alt="" style="width: 50%;height: 100%">
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <span style="display: block;margin: .2rem 0">
+                    {{ data.c_time }}
+                </span>
+            </div>
+            <ul class="pingLun">
+                {% for item in command %}
+                    <li>
+                        <a href="" class="PL_user_img">
+                            <img src="{% static 'img/boy.png' %}" alt="">
+                            <span>{{ item.users_id }}</span>
+                            <span>{{ item.c_time }}</span>
+                        </a>
+                        <p>{{ item.con }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
